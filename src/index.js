@@ -1,6 +1,6 @@
 // require('dotenv').config({path:'./env'}) doesn't look good required before import so second method is there
 
-import dotenv from "dotenv";
+import dotenv from "dotenv"
 import connectDB from "./db/index.js";
 import { app } from './app.js'
 // import mongoose from "mongoose";
@@ -8,21 +8,17 @@ import { app } from './app.js'
 
 
 dotenv.config({
-    path: './env'
+    path: './.env'
 })
 connectDB()
     .then(() => {
-        app.on("error", (error) => {
-            console.log("ERRR:", error);
-            throw error;
-        });
         app.listen(process.env.PORT || 8000, () => {
-            console.log(`Server is running on port: ${process.env.PORT}`);
-        });
+            console.log(`⚙️ Server is running at port : ${process.env.PORT}`);
+        })
     })
-  .catch((err) => {
-    console.log("Mongo db connection failed !!", err);
-  }) 
+    .catch((err) => {
+        console.log("MONGO db connection failed !!! ", err);
+    })
 /*
 dotenv configuration: The code uses the dotenv package to load environment variables from the .env file located at ./env. This allows the application to access sensitive configuration data (like database URIs and API keys) without hardcoding them in the codebase.
 
